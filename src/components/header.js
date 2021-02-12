@@ -28,6 +28,8 @@ const Header = (title, date, temp) => {
   tempSpan.classList.add(temp);
   tempSpan.textContent = `${temp}`;
   header.appendChild(tempSpan);
+
+  return header;
 };
 
 const headerAppender = (selector) => {

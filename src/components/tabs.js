@@ -17,20 +17,22 @@ const Tabs = (topics) => {
   div = document.createElement("div");
   div.classList.add("topics");
 
-  tabSibDivOne = document.createElement("div");
-  tabSibDivOne.classList.add("tab");
-  tabSibDivOne.textContent = "javascript";
-  div.appendChild(tabSibDivOne);
+  tabDivOne = document.createElement("div");
+  tabDivOne.classList.add("tab");
+  tabDivOne.textContent = "javascript";
+  div.appendChild(tabDivOne);
 
-  tabSibDivTwo = document.createElement("div");
-  tabSibDivTwo.classList.add("tab");
-  tabSibDivTwo.textContent = "bootstrap";
-  div.appendChild(tabsSibTwo);
+  tabDivTwo = document.createElement("div");
+  tabDivTwo.classList.add("tab");
+  tabDivTwo.textContent = "bootstrap";
+  div.appendChild(tabsTwo);
 
-  tabSibDivThree = document.createElement("div");
-  tabSibDivThree.classList.add("tab");
-  tabSibDivThree.textContent = "technology";
-  div.appendChild(tabSibDivThree);
+  tabDivThree = document.createElement("div");
+  tabDivThree.classList.add("tab");
+  tabDivThree.textContent = "technology";
+  div.appendChild(tabDivThree);
+
+  return div;
 };
 
 const tabsAppender = (selector) => {
