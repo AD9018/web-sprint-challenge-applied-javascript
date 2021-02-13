@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const Tabs = (topics) => {
   // TASK 3
   // ---------------------
@@ -13,9 +15,39 @@ const Tabs = (topics) => {
   //   <div class="tab">technology</div>
   // </div>
   //
-}
 
-const tabsAppender = (selector) => {
+  const div = document.createElement("div");
+  div.classList.add("topics");
+
+  const tabDivOne = document.createElement("div");
+  tabDivOne.classList.add("tab");
+  tabDivOne.textContent = topics[0];
+  div.appendChild(tabDivOne);
+
+  const tabDivTwo = document.createElement("div");
+  tabDivTwo.classList.add("tab");
+  tabDivTwo.textContent = topics[1];
+  div.appendChild(tabDivTwo);
+
+  const tabDivThree = document.createElement("div");
+  tabDivThree.classList.add("tab");
+  tabDivThree.textContent = topics[2];
+  div.appendChild(tabDivThree);
+
+  // const tabDivFour
+  const tabDivFour = document.createElement("div");
+  tabDivFour.classList.add("tab");
+  tabDivFour.textContent = topics[3];
+  div.appendChild(tabDivFour);
+  // const tabDivFive
+  const tabDivFive = document.createElement("div");
+  tabDivFive.classList.add("tab");
+  tabDivFive.textContent = topics[4];
+  div.appendChild(tabDivFive);
+  return div;
+};
+
+const tabsAppender = (res) => {
   // TASK 4
   // ---------------------
   // Implement this function which takes a css selector as its only argument.
@@ -23,6 +55,17 @@ const tabsAppender = (selector) => {
   // Find the array of topics inside the response, and create the tabs using the Tabs component.
   // Append the tabs to the element in the DOM that matches the selector passed to the function.
   //
-}
 
-export { Tabs, tabsAppender }
+  // tabContainer is the heighest hierarchy div
+  const tabContainer = document.querySelector(res);
+
+  axios.get(`https://lambda-times-api.herokuapp.com/topics`).then((event) => {
+    // arr is the array we are fetching from axios.get
+    const arr = event.data.topics;
+    //  appending div fetched from Tabs function
+    tabContainer.append(Tabs(arr));
+    console.log(event.data.topics);
+  });
+};
+
+export { Tabs, tabsAppender };

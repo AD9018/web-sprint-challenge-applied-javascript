@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const Card = (article) => {
   // TASK 5
   // ---------------------
@@ -17,9 +19,36 @@ const Card = (article) => {
   //   </div>
   // </div>
   //
-}
+  const cardDiv = document.createElement("div");
+  cardDiv.classList.add("card");
 
-const cardAppender = (selector) => {
+  const headlineDiv = document.createElement("div");
+  headlineDiv.classList.add("author");
+  headlineDiv.textContent = `${article.headline}`;
+  cardDiv.appendChild(headlineDiv);
+
+  const authorDiv = document.createElement("div");
+  authorDiv.classList.add("author");
+  cardDiv.appendChild(authorDiv);
+
+  const imgContainer = document.createElement("div");
+  imgContainer.classList.add("img-container");
+  authorDiv.appendChild(imgContainer);
+
+  const img = document.createElement("img");
+  img.src = `${article.authorPhoto}`;
+  imgContainer.appendChild(img);
+
+  const authorNameSpan = document.createElement("span");
+  authorNameSpan.textContent = `By ${article.authorName}`;
+  authorDiv.appendChild(authorNameSpan);
+
+  cardDiv.addEventListener("click", console.log(headlineDiv));
+
+  return cardDiv;
+};
+
+const cardAppender = (res) => {
   // TASK 6
   // ---------------------
   // Implement this function that takes a css selector as its only argument.
@@ -28,6 +57,17 @@ const cardAppender = (selector) => {
   // Create a card from each and every article object in the response, using the Card component.
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
-}
+  const card = document.querySelector(res);
+  axios.get(`https://lambda-times-api.herokuapp.com/articles`).then((event) => {
+    const array = Object.keys(event.data.articles);
+    card.append(Card(array));
+    console.log(array);
+    array.forEach((array) => {
+      event.data.articles[array].forEach((finetuned) => {
+        document.querySelector(res).append(Card(finetuned));
+      });
+    });
+  });
+};
 
-export { Card, cardAppender }
+export { Card, cardAppender };
