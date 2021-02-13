@@ -32,13 +32,17 @@ const Header = (title, date, temp) => {
   return header;
 };
 
-const headerAppender = (selector) => {
+const headerAppender = (res) => {
   // TASK 2
   // ---------------------
   // Implement this function taking a css selector as its only argument.
   // It should create a header using the Header component above, passing arguments of your choosing.
   // It should append the header to the element in the DOM that matches the given selector.
   //
+  const headerContainer = document.querySelector(res);
+  headerContainer.append(
+    Header("Lambda Times", "February 12,2021", "45\u00B0")
+  );
 };
 
 export { Header, headerAppender };
