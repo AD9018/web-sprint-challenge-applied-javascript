@@ -79,7 +79,7 @@ Be prepared to demonstrate your understanding of this week's concepts by answeri
 2. What is an event?
 
 3. What is an event listener?
-
+   An event listener is a method that recieves a callback function that is a window object. It also can recieve another parameter to be used to either console.log or for a function.
 4. Why would we convert a NodeList into an Array?
 
 5. What is a component?
